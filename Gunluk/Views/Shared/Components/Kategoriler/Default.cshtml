@@ -1,0 +1,16 @@
+﻿
+
+@model List<Kategori>
+
+<ol class="list-unstyled mb-0">
+    <li>
+        <a asp-controller="Home" asp-action="Index">Tum Yazilar</a>
+    </li>
+
+    @foreach (var k in Model)
+    {
+        <li>
+            <a asp-controller="Home" asp-action="Index" asp-route-kategoriId="@k.Id">@k.Ad</a>
+        </li>
+    }
+</ol>
