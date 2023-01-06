@@ -11,7 +11,7 @@ namespace Gunluk.Data
         [MaxLength(400)]
         public string Baslik { get; set; } = null!;
 
-        public string? Icerik { get; set; }
+        public string? Icerik { get; set; } = "";
 
 
         [MaxLength(255)]
