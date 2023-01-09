@@ -1,0 +1,44 @@
+﻿
+
+@model GonderiViewModel
+@{
+    var action = ViewContext.RouteData.Values["action"]?.ToString();
+    ViewData["Title"] = action == "Yeni" ? "Yeni Gonderi" : "Gonderiyi Duzenle";
+
+    var kategoriler = (List<SelectListItem>)ViewBag.Kategoriler;
+}
+
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="Baslik" class="form-label"></label>
+        <input asp-for="Baslik" type="text" class="form-control" placeholder="Baslik">
+        <span asp-validation-for="Baslik" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Icerik" class="form-label"></label>
+        <textarea asp-for="Icerik" class="form-control"></textarea>
+        <span asp-validation-for="Icerik"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="KategoriId" class="form-label"></label>
+        <select asp-for="KategoriId" asp-items="ViewBag.Kategoriler" class="form-control">
+            <option value="">Seciniz</option>
+        </select>
+        <span asp-validation-for="KategoriId"></span>
+    </div>
+    <div>
+        <button class="btn btn-primary">Kaydet</button>
+        <a asp-action="Index" class="btn btn-warning">IPTAL</a>
+    </div>
+</form>
+
+
+
+@section Scripts{ 
+    <script>
+        $("#Icerik").summernote({
+            height: 200
+
+        });
+    </script>
+}
