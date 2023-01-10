@@ -18,6 +18,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -34,5 +36,11 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+//VERITABANI YOKSA OLUSTUR(MIGRATION YOKSA OLUSTURUR)
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetService<UygulamaDbContext>();
+    db?.Database.Migrate();
+}
 
 app.Run();
